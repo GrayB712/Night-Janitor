@@ -9,7 +9,7 @@ public class LoadRoomScript : MonoBehaviour
 
     public Vector3 roomLocation = new Vector3(0.000f, 0.000f, 0.000f);
 
-    void OnTriggerEnter2D()
+    void OnTriggerStay2D()
     {
         if(roomContentsInstance == null)
         {
