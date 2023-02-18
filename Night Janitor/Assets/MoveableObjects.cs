@@ -11,7 +11,7 @@ public class MoveableObjects : MonoBehaviour
     public float howMuchDecreasePlayerSpeedWhenPushingObjects = 5;
     public Vector3 distanceBetweenObjectAndPlayer;
     public Rigidbody2D m_Rigidbody;
-    public bool hasDecreased = false;
+    public static bool hasDecreased = false;
     public bool currentlyShifting = false;
     // Start is called before the first frame update
     void Start()
