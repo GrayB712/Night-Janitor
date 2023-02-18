@@ -5,6 +5,7 @@ using UnityEngine;
 public class MoveableObjects : MonoBehaviour
 {
     private IEnumerator coroutine;
+    private IEnumerator coroutinetwo;
     public PlayerScript theplayerscript;
     public GameObject Player;
     public float howMuchDecreasePlayerSpeedWhenPushingObjects = 5;
@@ -29,12 +30,12 @@ public class MoveableObjects : MonoBehaviour
         }
     }
 
-    void OnCollisionStay2D(Collision2D collider)
+    void OnTriggerStay2D(Collider2D collider)
     {
-        if (collider.gameObject.tag == "Player" && Input.GetKey("return"))
+        if (collider.gameObject.tag == "Player" && Input.GetKeyDown(KeyCode.LeftShift))
         {
             distanceBetweenObjectAndPlayer = Player.transform.position - transform.position;
-            StickToPlayerOnShift();
+            StartCoroutine(StickToPlayerOnShift());
         }
     }
     void OnCollisionExit2D(Collision2D collider)
@@ -44,13 +45,16 @@ public class MoveableObjects : MonoBehaviour
             coroutine = WaitBeforeIncreaseSpeed(0.2f);
             StartCoroutine(coroutine);
         }
-    }
-    void StickToPlayerOnShift()
+    } 
+    IEnumerator StickToPlayerOnShift()
     {
-        while(Input.GetKey("return"))
+        while(Input.GetKey(KeyCode.LeftShift))
         {
+            Debug.Log("yee");
             transform.position = Player.transform.position + distanceBetweenObjectAndPlayer;
+            yield return new WaitForSeconds(.02f);
         }
+        
     }
     IEnumerator WaitBeforeIncreaseSpeed(float waitTime)
     {
