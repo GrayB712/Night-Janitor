@@ -11,6 +11,8 @@ public class MoveableObjects : MonoBehaviour
     public float howMuchDecreasePlayerSpeedWhenPushingObjects = 5;
     public Vector3 distanceBetweenObjectAndPlayer;
     public Rigidbody2D m_Rigidbody;
+    public bool hasDecreased = false;
+    public bool currentlyShifting = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,44 +25,78 @@ public class MoveableObjects : MonoBehaviour
         
     }
 
-    void OnCollisionEnter2D(Collision2D collider)
+    void OnColliderEnter2D(Collision2D collider)
     {
         if (collider.gameObject.tag == "Player")
         {
-            theplayerscript.speed -= howMuchDecreasePlayerSpeedWhenPushingObjects;
+            DecreaseSpeed();
         }
     }
 
+    void OnTriggerEnter2D(Collider2D collider)
+    {
+        Debug.Log("Trigger Enter");
+        if (collider.gameObject.tag == "Player" && Input.GetKey(KeyCode.LeftShift))
+        {
+            if(!currentlyShifting)
+            {
+                distanceBetweenObjectAndPlayer = Player.transform.position - transform.position;
+                StartCoroutine(StickToPlayerOnShift());
+            }
+        }
+    }
     void OnTriggerStay2D(Collider2D collider)
     {
-        if (collider.gameObject.tag == "Player" && Input.GetKeyDown(KeyCode.LeftShift))
+        Debug.Log("Trigger Stay");
+        if (collider.gameObject.tag == "Player" && Input.GetKey(KeyCode.LeftShift))
         {
             distanceBetweenObjectAndPlayer = Player.transform.position - transform.position;
             StartCoroutine(StickToPlayerOnShift());
-
-            
         }
     }
-    void OnCollisionExit2D(Collision2D collider)
+    void OnColliderExit2D(Collider2D collider)
     {
         if (collider.gameObject.tag == "Player")
         {
-            coroutine = WaitBeforeIncreaseSpeed(0.2f);
-            StartCoroutine(coroutine);
+            if(!currentlyShifting)
+            {
+                distanceBetweenObjectAndPlayer = Player.transform.position - transform.position;
+                StartCoroutine(StickToPlayerOnShift());
+            }
         }
     } 
     IEnumerator StickToPlayerOnShift()
     {
-        while(Input.GetKey(KeyCode.LeftShift))
+        while(Input.GetKey(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.LeftShift))
         {
+            currentlyShifting = true;
+            DecreaseSpeed();
             transform.position = Player.transform.position - distanceBetweenObjectAndPlayer;
             yield return new WaitForSeconds(0.001f);
         }
+        currentlyShifting = false;
+        IncreaseSpeed();
     }
-    IEnumerator WaitBeforeIncreaseSpeed(float waitTime)
+    IEnumerator WaitBeforeIncreaseSpeed(float WaitTime)
     {
-        yield return new WaitForSeconds(waitTime);
-        theplayerscript.speed += howMuchDecreasePlayerSpeedWhenPushingObjects;
+        yield return new WaitForSeconds(WaitTime);
+        IncreaseSpeed();
+    }
+    void IncreaseSpeed()
+    {
+        if(hasDecreased == true)
+        {
+            theplayerscript.speed += howMuchDecreasePlayerSpeedWhenPushingObjects;
+            hasDecreased = false;
+        }
+    }
+    void DecreaseSpeed()
+    {
+        if (hasDecreased == false)
+        {
+            theplayerscript.speed -= howMuchDecreasePlayerSpeedWhenPushingObjects;
+            hasDecreased = true;
+        }
     }
 
 }
