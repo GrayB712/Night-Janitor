@@ -540,6 +540,7 @@ MonoBehaviour:
   Player: {fileID: 0}
   howMuchDecreasePlayerSpeedWhenPushingObjects: 2
   distanceBetweenObjectAndPlayer: {x: 0, y: 0, z: 0}
+  m_Rigidbody: {fileID: 0}
 --- !u!50 &165048200
 Rigidbody2D:
   serializedVersion: 4
@@ -941,8 +942,9 @@ MonoBehaviour:
   Player: {fileID: 667663223}
   howMuchDecreasePlayerSpeedWhenPushingObjects: 2
   distanceBetweenObjectAndPlayer: {x: 0, y: 0, z: 0}
---- !u!68 &447155529
-EdgeCollider2D:
+  m_Rigidbody: {fileID: 0}
+--- !u!70 &447155529
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -954,24 +956,9 @@ EdgeCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -1.9902554, y: 0.09719086}
-  - {x: -1.656805, y: -1.0753946}
-  - {x: -0.1589508, y: -1.5869017}
-  - {x: 1.0507984, y: -1.2313118}
-  - {x: 1.6081219, y: -0.52359104}
-  - {x: 1.8367996, y: 0.29062557}
-  - {x: 1.1245136, y: 1.6872988}
-  - {x: -0.48262787, y: 1.905755}
-  - {x: -1.8445721, y: 1.1724062}
-  - {x: -2.0074387, y: 0.4681692}
-  - {x: -2.0269547, y: 0.19438076}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
+  m_Offset: {x: -0.12, y: 0.2}
+  m_Size: {x: 3.94, y: 3.49}
+  m_Direction: 1
 --- !u!1 &469938273
 GameObject:
   m_ObjectHideFlags: 0

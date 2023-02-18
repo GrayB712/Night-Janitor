@@ -10,6 +10,7 @@ public class MoveableObjects : MonoBehaviour
     public GameObject Player;
     public float howMuchDecreasePlayerSpeedWhenPushingObjects = 5;
     public Vector3 distanceBetweenObjectAndPlayer;
+    public Rigidbody2D m_Rigidbody;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +37,8 @@ public class MoveableObjects : MonoBehaviour
         {
             distanceBetweenObjectAndPlayer = Player.transform.position - transform.position;
             StartCoroutine(StickToPlayerOnShift());
+
+            
         }
     }
     void OnCollisionExit2D(Collision2D collider)
@@ -50,11 +53,9 @@ public class MoveableObjects : MonoBehaviour
     {
         while(Input.GetKey(KeyCode.LeftShift))
         {
-            Debug.Log("yee");
-            transform.position = Player.transform.position + distanceBetweenObjectAndPlayer;
-            yield return new WaitForSeconds(.02f);
+            transform.position = Player.transform.position - distanceBetweenObjectAndPlayer;
+            yield return new WaitForSeconds(0.001f);
         }
-        
     }
     IEnumerator WaitBeforeIncreaseSpeed(float waitTime)
     {
