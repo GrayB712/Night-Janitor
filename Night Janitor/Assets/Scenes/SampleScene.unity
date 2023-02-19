@@ -566,7 +566,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.17, y: 0.2}
-  m_Size: {x: 4.09, y: 4.08}
+  m_Size: {x: 4.42, y: 4.17}
   m_Direction: 1
 --- !u!114 &48170852
 MonoBehaviour:
@@ -585,7 +585,10 @@ MonoBehaviour:
   distanceBetweenObjectAndPlayer: {x: 0, y: 0, z: 0}
   previousPosition: {x: 0, y: 0, z: 0}
   m_Rigidbody: {fileID: 0}
+  player_Rigidbody: {fileID: 0}
   currentlyShifting: 0
+  friction: 6
+  countsAsTwoBaracades: 0
 --- !u!50 &48170853
 Rigidbody2D:
   serializedVersion: 4
@@ -599,8 +602,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 1.5
-  m_AngularDrag: 1.5
+  m_LinearDrag: 4
+  m_AngularDrag: 4
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -1134,7 +1137,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.02, y: 0.15}
-  m_Size: {x: 4.34, y: 3.45}
+  m_Size: {x: 4.64, y: 3.99}
   m_Direction: 1
 --- !u!114 &123097361
 MonoBehaviour:
@@ -1153,7 +1156,10 @@ MonoBehaviour:
   distanceBetweenObjectAndPlayer: {x: 0, y: 0, z: 0}
   previousPosition: {x: 0, y: 0, z: 0}
   m_Rigidbody: {fileID: 0}
+  player_Rigidbody: {fileID: 0}
   currentlyShifting: 0
+  friction: 6
+  countsAsTwoBaracades: 0
 --- !u!50 &123097362
 Rigidbody2D:
   serializedVersion: 4
@@ -1167,8 +1173,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 1.5
-  m_AngularDrag: 1.5
+  m_LinearDrag: 4
+  m_AngularDrag: 4
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -1244,7 +1250,10 @@ MonoBehaviour:
   distanceBetweenObjectAndPlayer: {x: 0, y: 0, z: 0}
   previousPosition: {x: 0, y: 0, z: 0}
   m_Rigidbody: {fileID: 165048200}
+  player_Rigidbody: {fileID: 0}
   currentlyShifting: 0
+  friction: 6
+  countsAsTwoBaracades: 0
 --- !u!50 &165048200
 Rigidbody2D:
   serializedVersion: 4
@@ -1258,8 +1267,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 1.5
-  m_AngularDrag: 1.5
+  m_LinearDrag: 4
+  m_AngularDrag: 4
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -1280,7 +1289,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.16}
-  m_Size: {x: 4.06, y: 3.53}
+  m_Size: {x: 4.36, y: 3.74}
   m_Direction: 1
 --- !u!1 &178310137
 GameObject:
@@ -1376,9 +1385,12 @@ GameObject:
   m_Component:
   - component: {fileID: 199377707}
   - component: {fileID: 199377708}
+  - component: {fileID: 199377710}
+  - component: {fileID: 199377709}
+  - component: {fileID: 199377711}
   m_Layer: 0
   m_Name: OrdersTable
-  m_TagString: Untagged
+  m_TagString: MoveableObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1425,6 +1437,74 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 5.082899, y: 2.108818}
   m_EdgeRadius: 0
+--- !u!61 &199377709
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199377706}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.07}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 6.42, y: 3.39}
+  m_EdgeRadius: 0
+--- !u!114 &199377710
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199377706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f1ac5719fb396f4d9391972f117a3bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  theplayerscript: {fileID: 667663226}
+  Player: {fileID: 667663223}
+  distanceBetweenObjectAndPlayer: {x: 0, y: 0, z: 0}
+  previousPosition: {x: 0, y: 0, z: 0}
+  m_Rigidbody: {fileID: 0}
+  player_Rigidbody: {fileID: 0}
+  currentlyShifting: 0
+  friction: 16
+  countsAsTwoBaracades: 1
+--- !u!50 &199377711
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199377706}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 16
+  m_AngularDrag: 16
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!1 &276676165
 GameObject:
   m_ObjectHideFlags: 0
@@ -1931,8 +2011,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 1.5
-  m_AngularDrag: 1.5
+  m_LinearDrag: 4
+  m_AngularDrag: 4
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -1956,7 +2036,10 @@ MonoBehaviour:
   distanceBetweenObjectAndPlayer: {x: 0, y: 0, z: 0}
   previousPosition: {x: 0, y: 0, z: 0}
   m_Rigidbody: {fileID: 0}
+  player_Rigidbody: {fileID: 0}
   currentlyShifting: 0
+  friction: 6
+  countsAsTwoBaracades: 0
 --- !u!70 &447155529
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1971,7 +2054,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.18, y: 0.21}
-  m_Size: {x: 3.98, y: 3.63}
+  m_Size: {x: 4.33, y: 3.76}
   m_Direction: 1
 --- !u!1 &469938273
 GameObject:
@@ -2465,7 +2548,10 @@ MonoBehaviour:
   distanceBetweenObjectAndPlayer: {x: 0, y: 0, z: 0}
   previousPosition: {x: 0, y: 0, z: 0}
   m_Rigidbody: {fileID: 0}
+  player_Rigidbody: {fileID: 0}
   currentlyShifting: 0
+  friction: 6
+  countsAsTwoBaracades: 0
 --- !u!70 &560794254
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -2480,7 +2566,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.02, y: 0.24}
-  m_Size: {x: 4.29, y: 3.71}
+  m_Size: {x: 4.65, y: 4.31}
   m_Direction: 1
 --- !u!50 &560794255
 Rigidbody2D:
@@ -2495,8 +2581,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 1.5
-  m_AngularDrag: 1.5
+  m_LinearDrag: 4
+  m_AngularDrag: 4
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -2965,8 +3051,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.06, y: 0.21}
-  m_Size: {x: 4.07, y: 3.53}
+  m_Offset: {x: -0.02, y: 0.21}
+  m_Size: {x: 4.6, y: 3.77}
   m_Direction: 1
 --- !u!50 &602585090
 Rigidbody2D:
@@ -2981,8 +3067,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 1.5
-  m_AngularDrag: 1.5
+  m_LinearDrag: 4
+  m_AngularDrag: 4
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -3006,7 +3092,10 @@ MonoBehaviour:
   distanceBetweenObjectAndPlayer: {x: 0, y: 0, z: 0}
   previousPosition: {x: 0, y: 0, z: 0}
   m_Rigidbody: {fileID: 0}
+  player_Rigidbody: {fileID: 0}
   currentlyShifting: 0
+  friction: 6
+  countsAsTwoBaracades: 0
 --- !u!70 &602585092
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -3092,7 +3181,10 @@ MonoBehaviour:
   distanceBetweenObjectAndPlayer: {x: 0, y: 0, z: 0}
   previousPosition: {x: 0, y: 0, z: 0}
   m_Rigidbody: {fileID: 0}
+  player_Rigidbody: {fileID: 0}
   currentlyShifting: 0
+  friction: 6
+  countsAsTwoBaracades: 0
 --- !u!70 &617480974
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -3107,7 +3199,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.16}
-  m_Size: {x: 4.29, y: 3.73}
+  m_Size: {x: 4.46, y: 4.06}
   m_Direction: 1
 --- !u!50 &617480975
 Rigidbody2D:
@@ -3122,8 +3214,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 1.5
-  m_AngularDrag: 1.5
+  m_LinearDrag: 4
+  m_AngularDrag: 4
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -3220,8 +3312,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_LinearDrag: 4
+  m_AngularDrag: 4
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -3245,7 +3337,7 @@ MonoBehaviour:
   tasklistIsVisible: 0
   taskList: {fileID: 1220683003}
   addedSpeed: 0
-  speed: 7
+  speed: 300
   paused: 0
 --- !u!70 &667663227
 CapsuleCollider2D:
@@ -3596,7 +3688,10 @@ MonoBehaviour:
   distanceBetweenObjectAndPlayer: {x: 0, y: 0, z: 0}
   previousPosition: {x: 0, y: 0, z: 0}
   m_Rigidbody: {fileID: 0}
+  player_Rigidbody: {fileID: 0}
   currentlyShifting: 0
+  friction: 6
+  countsAsTwoBaracades: 0
 --- !u!70 &700178511
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -3611,7 +3706,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.22}
-  m_Size: {x: 4.14, y: 3.52}
+  m_Size: {x: 4.38, y: 3.94}
   m_Direction: 1
 --- !u!50 &700178512
 Rigidbody2D:
@@ -3626,8 +3721,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 1.5
-  m_AngularDrag: 1.5
+  m_LinearDrag: 4
+  m_AngularDrag: 4
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -6092,9 +6187,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1288614276}
   - component: {fileID: 1288614277}
+  - component: {fileID: 1288614278}
+  - component: {fileID: 1288614280}
+  - component: {fileID: 1288614279}
   m_Layer: 0
   m_Name: SidesTable
-  m_TagString: Untagged
+  m_TagString: MoveableObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6128,7 +6226,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.016077995, y: -0.048233986}
+  m_Offset: {x: 0.00010108948, y: 0.008393288}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -6139,7 +6237,75 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.2540817, y: 5.533987}
+  m_Size: {x: 2.4805927, y: 5.6472416}
+  m_EdgeRadius: 0
+--- !u!50 &1288614278
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1288614275}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 16
+  m_AngularDrag: 16
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 4
+--- !u!114 &1288614279
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1288614275}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f1ac5719fb396f4d9391972f117a3bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  theplayerscript: {fileID: 667663226}
+  Player: {fileID: 667663223}
+  distanceBetweenObjectAndPlayer: {x: 0, y: 0, z: 0}
+  previousPosition: {x: 0, y: 0, z: 0}
+  m_Rigidbody: {fileID: 0}
+  player_Rigidbody: {fileID: 0}
+  currentlyShifting: 0
+  friction: 16
+  countsAsTwoBaracades: 1
+--- !u!61 &1288614280
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1288614275}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 3.81, y: 6.77}
   m_EdgeRadius: 0
 --- !u!1 &1354358595
 GameObject:
@@ -7315,7 +7481,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.19}
-  m_Size: {x: 4.4, y: 3.68}
+  m_Size: {x: 4.63, y: 4.19}
   m_Direction: 1
 --- !u!114 &1676813991
 MonoBehaviour:
@@ -7334,7 +7500,10 @@ MonoBehaviour:
   distanceBetweenObjectAndPlayer: {x: 0, y: 0, z: 0}
   previousPosition: {x: 0, y: 0, z: 0}
   m_Rigidbody: {fileID: 0}
+  player_Rigidbody: {fileID: 0}
   currentlyShifting: 0
+  friction: 6
+  countsAsTwoBaracades: 0
 --- !u!50 &1676813992
 Rigidbody2D:
   serializedVersion: 4
@@ -7348,8 +7517,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 1.5
-  m_AngularDrag: 1.5
+  m_LinearDrag: 4
+  m_AngularDrag: 4
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -8028,7 +8197,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.16}
-  m_Size: {x: 4, y: 3.37}
+  m_Size: {x: 4.3, y: 3.67}
   m_Direction: 1
 --- !u!114 &1784785619
 MonoBehaviour:
@@ -8047,7 +8216,10 @@ MonoBehaviour:
   distanceBetweenObjectAndPlayer: {x: 0, y: 0, z: 0}
   previousPosition: {x: 0, y: 0, z: 0}
   m_Rigidbody: {fileID: 0}
+  player_Rigidbody: {fileID: 0}
   currentlyShifting: 0
+  friction: 6
+  countsAsTwoBaracades: 0
 --- !u!50 &1784785620
 Rigidbody2D:
   serializedVersion: 4
@@ -8061,8 +8233,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 1.5
-  m_AngularDrag: 1.5
+  m_LinearDrag: 4
+  m_AngularDrag: 4
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -8406,7 +8578,10 @@ MonoBehaviour:
   distanceBetweenObjectAndPlayer: {x: 0, y: 0, z: 0}
   previousPosition: {x: 0, y: 0, z: 0}
   m_Rigidbody: {fileID: 0}
+  player_Rigidbody: {fileID: 0}
   currentlyShifting: 0
+  friction: 6
+  countsAsTwoBaracades: 0
 --- !u!70 &1882488635
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -8421,7 +8596,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.26}
-  m_Size: {x: 4.11, y: 3.49}
+  m_Size: {x: 4.53, y: 3.85}
   m_Direction: 1
 --- !u!50 &1882488636
 Rigidbody2D:
@@ -8436,8 +8611,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 1.5
-  m_AngularDrag: 1.5
+  m_LinearDrag: 4
+  m_AngularDrag: 4
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -9519,8 +9694,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.24}
-  m_Size: {x: 4.11, y: 4.03}
+  m_Offset: {x: 0, y: 0.18}
+  m_Size: {x: 4.53, y: 4.24}
   m_Direction: 1
 --- !u!114 &2123938317
 MonoBehaviour:
@@ -9539,7 +9714,10 @@ MonoBehaviour:
   distanceBetweenObjectAndPlayer: {x: 0, y: 0, z: 0}
   previousPosition: {x: 0, y: 0, z: 0}
   m_Rigidbody: {fileID: 0}
+  player_Rigidbody: {fileID: 0}
   currentlyShifting: 0
+  friction: 6
+  countsAsTwoBaracades: 0
 --- !u!50 &2123938318
 Rigidbody2D:
   serializedVersion: 4
@@ -9553,8 +9731,8 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 1.5
-  m_AngularDrag: 1.5
+  m_LinearDrag: 4
+  m_AngularDrag: 4
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0

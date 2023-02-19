@@ -149,7 +149,9 @@ public class PlayerScript : MonoBehaviour
         //Moves the player to the new calculated position
         if(!paused)
         {
-            rb.MovePosition(rb.position + input * Time.fixedDeltaTime);
+            //rb.MovePosition(rb.position + input * Time.fixedDeltaTime);
+            rb.velocity = (input * Time.fixedDeltaTime);
+            //rb.velocity + 
         }
         
     }
