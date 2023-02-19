@@ -34,8 +34,8 @@ public class PlayerScript : MonoBehaviour
     //Vector2 comprised of "vertical" (vertical input) and "horizontal" (horizontal input)
     private Vector2 input;
 
-    //Animator animator;
-    //bool playIdle;
+    Animator animator;
+    bool playIdle;
 
     public bool paused = false;
 
@@ -52,7 +52,7 @@ public class PlayerScript : MonoBehaviour
         normalSpeed = speed;
         //Gets the rigidbody component from player object
         rb = GetComponent<Rigidbody2D>();
-        //animator = GetComponent<Animator>();
+        animator = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -96,7 +96,7 @@ public class PlayerScript : MonoBehaviour
             }
             else
             {
-            horizontal = 0;
+                horizontal = 0;
             }
         }
 
@@ -133,16 +133,16 @@ public class PlayerScript : MonoBehaviour
         input = new Vector2(horizontal, vertical);
         
         //Tells animator what to play
-        // if (input.x == 0 && input.y == 0)
-        // {
-        //     playIdle = true;
-        // }
-        // else
-        // {
-        //     playIdle = false;
-        // }
+        if (vertical == 0 && horizontal == 0)
+        {
+            playIdle = true;
+        }
+        else
+        {
+            playIdle = false;
+        }
 
-        //animator.SetBool("Idle", playIdle);
+        animator.SetBool("Idle", playIdle);
         input = input * speed;
 
 
