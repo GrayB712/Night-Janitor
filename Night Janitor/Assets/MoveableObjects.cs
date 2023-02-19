@@ -10,13 +10,14 @@ public class MoveableObjects : MonoBehaviour
     public GameObject Player;
     public static float howMuchDecreasePlayerSpeedWhenPushingObjects = 1;
     public Vector3 distanceBetweenObjectAndPlayer;
+    public Vector3 previousPosition = new Vector3(0,0,0);
     public Rigidbody2D m_Rigidbody;
     public static bool hasDecreased = false;
     public bool currentlyShifting = false;
     // Start is called before the first frame update
     void Start()
     {
-        
+        previousPosition = transform.position;
     }
 
     // Update is called once per frame
@@ -25,55 +26,40 @@ public class MoveableObjects : MonoBehaviour
         
     }
 
-    void OnColliderEnter2D(Collision2D collider)
-    {
-        if (collider.gameObject.tag == "Player")
-        {
-            DecreaseSpeed();
-        }
-    }
+    
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        Debug.Log("Trigger Enter");
-        if (collider.gameObject.tag == "Player" && Input.GetKey(KeyCode.LeftShift))
+        
+        if (collider.gameObject.tag == "Player" && Input.GetKey(KeyCode.LeftShift) && theplayerscript.numberOfObjectsDragging < 4)
         {
             if(!currentlyShifting)
             {
                 distanceBetweenObjectAndPlayer = Player.transform.position - transform.position;
-                StartCoroutine(StickToPlayerOnShift());
             }
         }
     }
     void OnTriggerStay2D(Collider2D collider)
     {
-        Debug.Log("Trigger Stay");
-        if (collider.gameObject.tag == "Player" && Input.GetKey(KeyCode.LeftShift))
+        
+        if (collider.gameObject.tag == "Player" && !currentlyShifting && Input.GetKey(KeyCode.LeftShift) && theplayerscript.numberOfObjectsDragging < 2)
         {
             distanceBetweenObjectAndPlayer = Player.transform.position - transform.position;
             StartCoroutine(StickToPlayerOnShift());
         }
     }
-    void OnColliderExit2D(Collider2D collider)
-    {
-        if (collider.gameObject.tag == "Player")
-        {
-            if(!currentlyShifting)
-            {
-                distanceBetweenObjectAndPlayer = Player.transform.position - transform.position;
-                StartCoroutine(StickToPlayerOnShift());
-            }
-        }
-    } 
     IEnumerator StickToPlayerOnShift()
     {
+        theplayerscript.numberOfObjectsDragging += 1;
         while(Input.GetKey(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.LeftShift))
         {
             currentlyShifting = true;
             DecreaseSpeed();
             transform.position = Player.transform.position - distanceBetweenObjectAndPlayer;
-            yield return new WaitForSeconds(0.001f);
+            previousPosition = transform.position;
+            yield return new WaitForSeconds(.001f);
         }
+        theplayerscript.numberOfObjectsDragging -= 1;
         currentlyShifting = false;
         IncreaseSpeed();
     }

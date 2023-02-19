@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: cb32472bdad17234d949ce75fea503ec
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Jim Nightshade
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 5f9bfc4b2f29fa84eb5b47bda27a79ec, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

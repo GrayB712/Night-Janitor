@@ -8,6 +8,8 @@ public class PlayerScript : MonoBehaviour
     //The Camera
     public GameObject theCamera;
 
+    public float numberOfObjectsDragging = 0;
+
     //Variable that tells whether or not the tasklist is out
     public bool tasklistIsVisible = false;
 
