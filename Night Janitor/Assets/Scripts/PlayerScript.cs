@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerScript : MonoBehaviour
 {
-
     //The Camera
     public GameObject theCamera;
 

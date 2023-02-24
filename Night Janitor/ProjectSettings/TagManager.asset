@@ -6,6 +6,7 @@ TagManager:
   tags:
   - MoveableObject
   - Walls
+  - ComputerScreenLoader
   layers:
   - Default
   - TransparentFX
