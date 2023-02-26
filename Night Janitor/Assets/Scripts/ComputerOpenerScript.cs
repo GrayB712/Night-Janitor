@@ -2,9 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+ 
 public class ComputerOpenerScript : MonoBehaviour
 {
+    public static bool generatorConnected = true;
+    public static bool reservePowerConnected = true;
+    public static bool fridgeBatteryConnected = true;
+    
     public bool haveLoaded = false;
     public PlayerScript theplayersscript;
     bool pressedE = false;
@@ -32,7 +36,6 @@ public class ComputerOpenerScript : MonoBehaviour
     {
         if(collider.tag == "Player" && pressedE == true)
         {
-            Debug.Log("yep");
             if(haveLoaded == false)
             {
                 theplayersscript.paused = true;

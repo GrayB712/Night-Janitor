@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MoveableObjects : MonoBehaviour
 {
+    public AudioSource sfx;
     private IEnumerator coroutine;
     private IEnumerator coroutinetwo;
     public PlayerScript theplayerscript;
@@ -18,6 +19,7 @@ public class MoveableObjects : MonoBehaviour
     public static float maxDistanceToPlayer = 5f;
     public float friction = 6;
     public bool countsAsTwoBaracades = false;
+    public AudioClip[] audioClipArray;
 
     // Start is called before the first frame update
     void Start()
@@ -53,6 +55,7 @@ public class MoveableObjects : MonoBehaviour
         {
             distanceBetweenObjectAndPlayer = Player.transform.position - transform.position;
             StartCoroutine(StickToPlayerOnShift());
+            //sfx.Play(0);
         }
     }
     IEnumerator StickToPlayerOnShift()
