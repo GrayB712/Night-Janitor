@@ -18,6 +18,8 @@ public class ComputerScreenScript : MonoBehaviour
     public float batteryPower = 2f;
     Vector3 mousePosition;
     Camera m_Camera;
+    public GameObject[] greenExits;
+    private SpriteRenderer redExitRend;
     void Awake()
     {
         m_Camera = Camera.main;
@@ -50,14 +52,34 @@ public class ComputerScreenScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-       {
-           mousePosition = Input.mousePosition;
-           Ray ray = m_Camera.ScreenPointToRay(mousePosition);
-           if (Physics.Raycast(ray, out RaycastHit hit))
-           {
-               Debug.Log(hit.transform.name);
-           }
-       }
+       if (Input.GetMouseButtonDown(0)) {
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 mousePos2D = new Vector2(mousePos.x, mousePos.y);
+            
+            RaycastHit2D hit = Physics2D.Raycast(mousePos2D, Vector2.zero);
+            if (hit.collider != null) {
+                if(hit.collider.gameObject.tag == "MapExit")
+                {
+                    for(int i=1; i<=greenExits.Length; i++)
+                    {
+                        if(hit.collider.gameObject.name == greenExits[i].gameObject.name)
+                        {
+                            if(greenExits[i].activeInHierarchy)
+                            {
+                                greenExits[i].SetActive(false);
+                                redExitRend = hit.collider.gameObject.GetComponent<SpriteRenderer>();
+                                redExitRend.sortingOrder = 119;
+                            }else
+                            {
+                                greenExits[i].SetActive(true);
+                                redExitRend = hit.collider.gameObject.GetComponent<SpriteRenderer>();
+                                redExitRend.sortingOrder = 0;
+                            }
+                        }
+                    }
+                }
+                //hit.collider.attachedRigidbody.AddForce(Vector2.up);
+            }
+        }
     }
 }
