@@ -2,12 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
- 
+  
 public class ComputerOpenerScript : MonoBehaviour
 {
-    public static bool generatorConnected = true;
-    public static bool reservePowerConnected = true;
-    public static bool fridgeBatteryConnected = true;
+    public static bool generatorConnected = false;
+    public static bool reservePowerConnected = false;
+    public static bool fridgeBatteryConnected = false;
     
     public bool haveLoaded = false;
     public PlayerScript theplayersscript;
