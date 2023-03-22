@@ -9,6 +9,7 @@ TagManager:
   - ComputerScreenLoader
   - MapExit
   - LostnFound
+  - Generator
   layers:
   - Default
   - TransparentFX
