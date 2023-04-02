@@ -8,6 +8,7 @@ public class ComputerOpenerScript : MonoBehaviour
     public static bool generatorConnected = false;
     public static bool reservePowerConnected = false;
     public static bool fridgeBatteryConnected = false;
+    public GameObject orangeBox;
     
     public bool haveLoaded = false;
     public PlayerScript theplayersscript;
@@ -34,12 +35,17 @@ public class ComputerOpenerScript : MonoBehaviour
     } 
     void OnTriggerStay2D(Collider2D collider)
     {
+        if(collider.tag == "Player")
+        {
+            orangeBox.SetActive(true);
+        }
         if(collider.tag == "Player" && pressedE == true)
         {
             if(haveLoaded == false)
             {
                 theplayersscript.paused = true;
                 haveLoaded = true;
+                orangeBox.SetActive(false);
                 SceneManager.LoadScene("ComputerScreen", LoadSceneMode.Additive);
             }else if (haveLoaded == true)
             {
@@ -49,7 +55,12 @@ public class ComputerOpenerScript : MonoBehaviour
             }
             pressedE = false;
         }
-        
-        
+    }
+    void OnTriggerExit2D(Collider2D collider)
+    {
+        if(collider.tag == "Player")
+        {
+            orangeBox.SetActive(false);
+        }
     }
 }
